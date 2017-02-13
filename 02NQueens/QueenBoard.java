@@ -8,22 +8,53 @@ private int solutionCount;
     }
 
 
-    //  public void solve(){
-    //	return solveH(0, 0, 0);
-    //   }
+      public void solve(){
+    	solveH(0);
+       }
 
-    /*    public boolean solveH(int col, int row, int queens){
+        public boolean solveH(int col){
 	if(board.length == 2 || board.length == 3){
 	    return false;
 	}
-	if(col >= board.length){
-	    return (queens == board.length);
+	if(col == board.length){
+	    return true;}
+	for(int row = 0; row < board.length; row++){
+	if(board[row][col] == 0){
+	   addQueen(row,col);
+	   if(solveH(col + 1)){
+	   return true;}
+	   else{removeQueen(row,col);}
 	}
+	return false;
+	}
+	
+
+	public void countSolutions(){
+	solveG(0);
+}
+	
+        public void solveG(int col){
+	if(col == board.length){
+	    return true;}
+	for(int row = 0; row < board.length; row++){
+	if(board[row][col] == 0){
+	   addQueen(row,col);
+	   if(solveG(col + 1)){
+	   solutionCount++;}
+	   else{removeQueen(row,col);}
+	}
+	}
+
+
+
+
+
+
 	if(row > board.length){
 	    removeQueen(col - 1);
 	    return solveH(col - 1, 0, queens - 1);
 	}
-	if(board[row][col] == 0;){
+	if(board[row][col] == 0){
 	    addQueen(row,col);
 	    return solveH(col + 1, row, queens + 1);
 	}
@@ -31,7 +62,7 @@ private int solutionCount;
 	    return solveH(col, row + 1, queens);
 	}
 	return false;
-        }*/
+        }
 
     public void countSolutions(){
     }
