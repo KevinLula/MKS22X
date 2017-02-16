@@ -48,6 +48,32 @@ public class KnightsTor{
 
 
     }
+}
+
+	private boolean solveH(int row, int col, int level){
+	if(level == (board.length * board[0].length)){
+	return true;}
+	for(int x = 0; x < board.length; x++){
+		for(int y = 0; y < board[0].length; y++){
+			if(isValid(row, col, x, y)){
+			addKnight(x, y, level);
+			if(solveH(x, y, level + 1)){
+			return true;}
+			else{removeKnight(x, y, level);}
+			}
+			}
+			}
+			return false;}
+
+	
+    private boolean isValid(int row,int col,int x,int y){
+	if((row - 2 == x && col - 1 == y) || 
+	(row - 2 == x && col + 1 == y) ||
+	(row + 2 == x && col - 1 == y) ||
+	(row + 2 == x && col + 1 == y) ||
+	(row - 1 == x && col - 2 == y) ||
+	(row - 1 == x && col + 2 == y) ||
+	(row + 1 == x && col 
 
     private void addKnight(int r, int c, int l){
 	board[r][c] == l;
