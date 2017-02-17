@@ -81,7 +81,7 @@ public class KnightBoard{
     //1. If an L shape is presented in the loop then u add the knight of the next number 
 
 	public static void main(String[] args){
-	KnightBoard a = new KnightBoard(9,9);
+	KnightBoard a = new KnightBoard(10, 10);
 	a.solve();
 	System.out.println(a);
 }
