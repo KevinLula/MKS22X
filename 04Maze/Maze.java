@@ -5,6 +5,11 @@ public class Maze{
 
     public Maze(String filename){
 	animate = false;
+	Scanner sc = new Scanner(filename);
+	char[] temp = new char[];
+ 	while(sc.hasNext()){
+	temp += sc.next()
+	
 	//Scan Maze file
     }
 
