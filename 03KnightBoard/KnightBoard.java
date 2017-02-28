@@ -72,17 +72,4 @@ public class KnightBoard{
 	board[r][c] = 0;
     }
 
-
-    //1. Place the Knight and make the surrounding circle full of -1;
-    //2. AddKnight at one of the -1;
-    //3. Clear other -1; 
-
-    //1st Add Knight at starting position
-    //1. If an L shape is presented in the loop then u add the knight of the next number 
-
-	public static void main(String[] args){
-	KnightBoard a = new KnightBoard(10, 10);
-	a.solve();
-	System.out.println(a);
-}
 }
