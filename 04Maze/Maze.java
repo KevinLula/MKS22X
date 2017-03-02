@@ -1,14 +1,20 @@
+import java.util.Scanner;
 public class Maze{
 
     private char[][]maze;
     private boolean animate;
 
     public Maze(String filename){
+	int y = 0;
 	animate = false;
-	Scanner sc = new Scanner(filename);
-	char[] temp = new char[];
- 	while(sc.hasNext()){
-	temp += sc.next()
+	Scanner sc = new Scanner(new File(filename));
+ 	while(sc.hasNextLine()){
+	String a = in.next();
+	for(int x = 0; x < a.length(); x++){
+	maze[x][y] = a.charAt(x);
+	}
+	y = y + 1;
+	}
 	
 	//Scan Maze file
     }
