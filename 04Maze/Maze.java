@@ -8,8 +8,8 @@ public class Maze{
     private int rowStart;
     private int colStart;
 
-    public Maze(String filename, boolean b){
-	animate = b;
+    public Maze(String filename){
+	animate = false;
 	try{
 	    int E = 0;
 	    int S = 0;
