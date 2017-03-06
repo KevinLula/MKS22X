@@ -117,12 +117,6 @@ public class Maze{
         maze[row][col] = '.';
 	return false;
     }
-
-    	public static void main(String[] args){
-		Maze a = new Maze("maze5.txt", false);
-		a.solve();
-		System.out.println(a);
-	}
 }
 
 
