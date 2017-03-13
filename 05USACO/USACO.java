@@ -7,7 +7,7 @@ public class USACO{
     private int r;
     private int c;
     private int e;
-    private int n;
+    private int instructions;
 
     public USACO(){
     }
@@ -27,7 +27,7 @@ public class USACO{
 	r = Integer.parseInt(Line1.next());
 	c = Integer.parseInt(Line1.next());
 	e = Integer.parseInt(Line1.next());
-	n = Integer.parseInt(Line1.next());
+	instructions = Integer.parseInt(Line1.next());
 
 	lake = new int[r][c];
 
@@ -38,7 +38,9 @@ public class USACO{
 	    }
 	}
 
-	while(sc.hasNextLine()){
+	int a = 0;
+
+	while(a < instructions){
 	    Scanner lastLine = new Scanner(sc.nextLine());
 	    int row = lastLine.nextInt() - 1;
 	    int col = lastLine.nextInt() - 1;
@@ -52,6 +54,7 @@ public class USACO{
 		    }
 		}
 	    }
+	    a++;
 	}
 	return volume(e);
 }
@@ -124,7 +127,7 @@ public class USACO{
 		}
 	    }
 	}
-
+	
 	startRow = sc.nextInt() - 1;
 	startCol = sc.nextInt() - 1;
 	endRow = sc.nextInt() - 1;
@@ -167,8 +170,7 @@ public class USACO{
 	    updatePastures();
 	}
 	return pasture[endRow][endCol];
-    }
-			   			   
+    }			   			   
 }
 		
 	
