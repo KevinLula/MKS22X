@@ -57,19 +57,14 @@ public class USACO{
 }
 
         private int stomp(int row, int col, int depth){
-	int tempRow = row;
-	int tempCol = col;
 	int temp = lake[row][col];
 	for(int x = row; x < row + 3; x++){
 	    for(int y = col; y < col + 3; y++){
 		if (lake[x][y] > temp){
 		    temp = lake[x][y];
-		    tempRow = x;
-		    tempCol = y;
 		}
 	    }
 	}
-	lake[tempRow][tempCol] -= depth;
         int ans = temp - depth;
        	return ans;
 
@@ -172,7 +167,7 @@ public class USACO{
 	    updatePastures();
 	}
 	return pasture[endRow][endCol];
-    }			   
+    }
 			   			   
 }
 		
