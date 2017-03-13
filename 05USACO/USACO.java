@@ -1,3 +1,4 @@
+//Worked with Cynthia Cheng
 import java.io.*;
 import java.util.*;    
 public class USACO{
@@ -172,6 +173,12 @@ public class USACO{
 	}
 	return pasture[endRow][endCol];
     }
+
+    public static void main(String[] args){
+	USACO x = new USACO();
+	System.out.println(x.bronze("SilTest1.txt"));
+    }
+			   
 			   			   
 }
 		
