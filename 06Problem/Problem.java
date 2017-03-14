@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Problem{
 
-    public static ArrayList<String> combination(String s){
+    public static ArrayList<String> combinations(String s){
 	ArrayList<String> words = new ArrayList<String>();
 	combinationH(s, words, "", 0);
 	return words;
@@ -20,9 +20,5 @@ public class Problem{
 	    combinationH(s, words, a + s.charAt(b), b + 1);
 	    combinationH(s, words, a, b + 1);
 	}
-    }
-
-    public static void main(String[] args){
-	System.out.println(combination("abc"));
     }
 }
