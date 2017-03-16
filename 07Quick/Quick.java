@@ -36,5 +36,8 @@ public class Quick{
 	    return quickH(data, k, index-1, end);
 	}
     }
+    //Start and end of the method currently do not have any function in the method.
+    //Though they will be used to dicide the array so that the area of search is diminished.
+    //Currently it is merely randomly searching for the value.
 }
 	
