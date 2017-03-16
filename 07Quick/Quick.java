@@ -34,16 +34,6 @@ public class Quick{
 	return data[k];
     }
 
-
-    public static void main(String[]args){
-
-	int[] arr = new int[]{1, 3, 10, 11, 2, 5, 0, 8, 7};
-	//System.out.println(part(arr,0,9));
-	for(int i = 0; i < arr.length; i++){
-	    // System.out.print(arr[i]+" ");
-	    System.out.println(quickselect(arr,i));
-	}
-    }
 }
 
 
