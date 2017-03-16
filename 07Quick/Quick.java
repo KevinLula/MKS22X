@@ -1,43 +1,49 @@
 import java.util.Random;
 public class Quick{
-    public static void swap(int[]data, int a, int b){
-	int temp = data[a];
-	data[a] = data[b];
-	data[b] = temp;
-    }
     
     public static int part(int[] data, int start, int end){
-	int pivot = new Random().nextInt(data.length);
-	swap(data, pivot, end - 1);
+	int pivot = new Random().nextInt(end - start + 1) + start;
+	int temp = data[end - 1];
+	data[end - 1] = data[pivot];
+	data[pivot] = temp;
 	int begin = start;
-	for(int i = start; i < end - 1; i++){
-	    if(data[i] < data[end-1]){
-		swap(data, begin, i);
-		begin+=1;	      
+	for(int x = start; x < end - 1; x++){
+	    if(data[x] < data[end - 1]){
+		int temp2 = data[begin];
+		data[begin] = data[x];
+		data[x] = temp2;
+		begin += 1;
 	    }
 	}
-	swap(data, begin, end-1);
-	return begin;		
+	    temp = data[begin];
+	    data[begin] = data[end - 1];
+	    data[end - 1] = temp;
+	    return begin;
     }
 
     public static int quickselect(int[]data, int k){
-	return quickH(data, k, 0, data.length);
+	int index = part(data, 0, data.length - 1);
+	while(k != index){
+	    if(index > k){
+		index = part(data, 0, index);
+	    }
+	    if(index < k){
+		index = part(data, index + 1, data.length - 1);
+	    }
+	}
+	return data[k];
     }
 
-    public static int quickH(int[]data, int k, int start, int end){
-	int index = part(data, 0, data.length);
-	if (index == k){
-	    return data[k];
+        public static void main(String[]args){
+
+	    int[] arr = new int[]{1, 3, 10, 11, 2, 5, 0, 8, 7};
+	//System.out.println(part(arr,0,9));
+	for(int i = 0; i < arr.length; i++){
+	    // System.out.print(arr[i]+" ");
+	    System.out.println(quickselect(arr,i));
 	}
-	if(k > index){
-	    return quickH(data, k, start, index-1);
 	}
-	else{
-	    return quickH(data, k, index-1, end);
-	}
-    }
-    //Start and end of the method currently do not have any function in the method.
-    //Though they will be used to dicide the array so that the area of search is diminished.
-    //Currently it is merely randomly searching for the value.
 }
+
+
 	
