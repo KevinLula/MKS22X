@@ -21,21 +21,23 @@ public class Quick{
 	    return begin;
     }
 
-    public static int quickselect(int[]data, int k){
-	int index = part(data, 0, data.length - 1);
-	int temp[] = new int[data.length];
-	for(int x = 0; x < data.length; x++){
-	temp[x] = data[x];
+    public static int quickselect(int[] data, int k){
+	return quickselectH(data, k, 0, data.length);
+    }
+
+    private static int quickselectH(int[]data, int k, int small, int large){
+	int index = part(data, 0, data.length);
+	int lesserK = small;
+	int biggerK = large;
+	if(k > index){
+	    biggerK = index;
+	    quickselectH(data, k, lesserK, biggerK);
 	}
-	while(k != index){
-	    if(index > k){
-		index = part(temp, 0, index + 1);
-	    }
-	    if(index < k){
-		index = part(temp, index + 1, temp.length - 1);
-	    }
+	if(k < index){
+	    lesserK = index;
+	    quickselectH(data, k, lesserK, biggerK);
 	}
-	return temp[k];
+	return data[k];
     }
 
 	public static void main(String[] args){
@@ -47,7 +49,7 @@ public class Quick{
 	s += a[x];
 	}
 	System.out.println(s);
-	System.out.println(quickselect(a, 2));
+	System.out.println(quickselect(a, 4));
 	for(int x = 0; x < a.length; x++){
 	b += a[x];
 	}
