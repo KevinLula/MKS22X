@@ -26,19 +26,20 @@ public class Quick{
     }
 
     private static int quickselectH(int[]data, int k, int small, int large){
-	int index = part(data, 0, data.length);
+	int index = part(data, small, large);
 	int lesserK = small;
 	int biggerK = large;
-	if(k > index){
+	if(k < index){
 	    biggerK = index;
 	    quickselectH(data, k, lesserK, biggerK);
 	}
-	if(k < index){
+	if(k > index){
 	    lesserK = index;
 	    quickselectH(data, k, lesserK, biggerK);
 	}
 	return data[k];
     }
+	   	
 
 	public static void main(String[] args){
 	int[] a = {0, 4, 1, 5, 3, 2};
