@@ -39,23 +39,44 @@ public class Quick{
 	}
 	return data[k];
     }
-	   	
 
+    private static int[] quickSortH(int[] data, int start, int end){
+	if(start < end){
+	    int index = part(data, start, end);	    
+	    quickSortH(data, start, index - 1);
+	    quickSortH(data, index + 1, end);
+	}
+	return data;
+    }
+
+    public static String quickSort(int[] data){
+	int[] temp = quickSortH(data, 0, data.length);
+	String res = "";
+	for(int x = 0; x < temp.length; x++){
+	    res += temp[x];
+	}
+	return res;
+    }
+	
+	    
 	public static void main(String[] args){
 	int[] a = {0, 4, 1, 5, 3, 2};
+	int[] b = {0, 4, 1, 5, 3, 2};;
+	int[] c = {0, 4, 1, 5, 3, 2};;
 	System.out.println(part(a, 0, a.length));
 	String s = "";
-	String b = "";
+	String t = "";
 	for(int x = 0; x < a.length; x++){
 	s += a[x];
 	}
 	System.out.println(s);
-	System.out.println(quickselect(a, 4));
-	for(int x = 0; x < a.length; x++){
-	b += a[x];
+	System.out.println(quickselect(b, 4));
+	for(int x = 0; x < b.length; x++){
+	t += b[x];
 	}
-	System.out.println(b);	
-}
+	System.out.println(t);
+	System.out.println(quickSort(c));
+	}
 
 }
 
