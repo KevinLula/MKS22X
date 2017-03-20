@@ -43,7 +43,7 @@ public class Quick{
     private static int[] quickSortH(int[] data, int start, int end){
 	if(start < end){
 	    int index = part(data, start, end);	    
-	    quickSortH(data, start, index - 1);
+	    quickSortH(data, start, index);
 	    quickSortH(data, index + 1, end);
 	}
 	return data;
@@ -62,7 +62,7 @@ public class Quick{
 	public static void main(String[] args){
 	    int[] a = {0, 4, 1, 2, 5, 3, 2};
 	    int[] b = {0, 4, 1, 2, 5, 3, 2};
-	    int[] c = {0, 4, 1, 2, 5, 3, 2};
+	    int[] c = {0, 2, 1, 2, 3};
 	System.out.println(part(a, 0, a.length));
 		String s = "";
 	String t = "";
