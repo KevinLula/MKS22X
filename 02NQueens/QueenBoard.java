@@ -100,6 +100,8 @@ private int [][] board;
 	}
 	board[r][c] = 0;
     }
+}
+
 	       
 
 	
