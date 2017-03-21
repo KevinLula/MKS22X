@@ -1,24 +1,26 @@
 import java.util.Random;
 public class Partition{
-    public static void swap(int[]data, int a, int b){
-	int temp = data[a];
-	data[a] = data[b];
-	data[b] = temp;
-    }
-    
-    public static int part(int[] data, int start, int end){
-	int pivot = new Random().nextInt(data.length);
-	swap(data, pivot, end - 1);
-	int begin = start;
-	for(int i = start; i < end - 1; i++){
-	    if(data[i] < data[end-1]){
-		swap(data, begin, i);
-		begin+=1;	      
-	    }
+	public static int part(int[] data, int start, int end){
+	int pivot = new Random.nextInt(end - start) + start;
+	int temp = data[start];
+	data[start] = data[pivot];
+	data[pivot] = temp;
+	int lt = start;
+	int i = start + 1;
+	int gt = end - 1;
+	while(i <= gt){
+	if(data[i] == pivot){
+	i++;
 	}
-	swap(data, begin, end-1);
-	return begin;		
-    }
-}
+	if(data[i] < pivot){
+	temp2 = data[i];
+	data[i] = data[lt];
+	data[lt] = temp2;
+	lt++;
+	i++;
+	}
+	if(data[i] > pivot){
+	
+	
 
 	
