@@ -53,7 +53,7 @@ private int [][] board;
 	}
 	
 
-    public int getCount(){
+    public int getSolutionCount(){
 	return solutionCount;
     }
 
