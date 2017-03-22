@@ -1,25 +1,38 @@
 import java.util.Random;
 public class Quick{
     
-    public static int part(int[] data, int start, int end){
-	int pivot = new Random().nextInt(end - start) + start;
-	int temp = data[end - 1];
-	data[end - 1] = data[pivot];
-	data[pivot] = temp;
-	int begin = start;
-	for(int x = start; x < end - 1; x++){
-	    if(data[x] <= data[end - 1]){
-		int temp2 = data[begin];
-		data[begin] = data[x];
-		data[x] = temp2;
-		begin += 1;
+	public static int part(int[] data, int start, int end){
+	    int pivot = new Random().nextInt(end - start) + start;
+	    int pivotNum = data[pivot];
+	    int temp = data[start];
+	    data[start] = data[pivot];
+	    data[pivot] = temp;
+	    int lt = start;
+	    int i = start + 1;
+	    int gt = end - 1;
+	    while(i <= gt){
+		if(data[i] == pivotNum){
+		    i++;
+		}
+		else if(data[i] < pivotNum){
+		    int temp2 = data[i];
+		    data[i] = data[lt];
+		    data[lt] = temp2;
+		    lt++;
+		    i++;
+		}
+		else{
+		    int temp3 = data[i];
+		    data[i] = data[gt];
+		    data[gt] = temp3;
+		    gt--;
+		}
 	    }
+	    int temp4 = data[gt];
+	    data[gt] = data[lt];
+	    data[lt] = temp4;
+	    return lt;
 	}
-	    int temp3 = data[begin];
-	    data[begin] = data[end - 1];
-	    data[end - 1] = temp3;
-	    return begin;
-    }
 
     public static int quickselect(int[] data, int k){
 	return quickselectH(data, k, 0, data.length);
@@ -70,13 +83,13 @@ public class Quick{
 	s += a[x];
 	}
 	System.out.println(s);
-       	System.out.println(quickselect(b, 2));
+	/*	System.out.println(quickselect(b, 2));
 	for(int x = 0; x < b.length; x++){
 	t += b[x];
 	}
 	System.out.println(t);
 	System.out.println(quickSort(c));
-       	}
+	*/	}
 
 }
 
