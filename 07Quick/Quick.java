@@ -1,7 +1,8 @@
 import java.util.Random;
 public class Quick{
     
-	public static int part(int[] data, int start, int end){
+    	public static int[] part(int[] data, int start, int end){
+	    int[] ans = new int[2];
 	    int pivot = new Random().nextInt(end - start) + start;
 	    int pivotNum = data[pivot];
 	    int temp = data[start];
@@ -10,9 +11,11 @@ public class Quick{
 	    int lt = start;
 	    int i = start + 1;
 	    int gt = end - 1;
+	    int numsRan = 0;
 	    while(i <= gt){
 		if(data[i] == pivotNum){
 		    i++;
+		    numsRan++;
 		}
 		else if(data[i] < pivotNum){
 		    int temp2 = data[i];
@@ -31,7 +34,9 @@ public class Quick{
 	    int temp4 = data[gt];
 	    data[gt] = data[lt];
 	    data[lt] = temp4;
-	    return lt;
+	    ans[0] = lt;
+	    ans[1] = lt + numsRan;
+	    return ans;
 	}
 
     public static int quickselect(int[] data, int k){
@@ -39,7 +44,8 @@ public class Quick{
     }
 
     private static int quickselectH(int[]data, int k, int small, int large){
-	int index = part(data, small, large);
+	int [] ary = part(data, small, large);
+	int index = ary[0];
 	int lesserK = small;
 	int biggerK = large;
 	if(k < index){
@@ -53,45 +59,44 @@ public class Quick{
 	return data[k];
     }
 
-    private static int[] quickSortH(int[] data, int start, int end){
+    private static void quicksortH(int[] data, int start, int end){
 	if(start < end){
-	    int index = part(data, start, end);	    
-	    quickSortH(data, start, index);
-	    quickSortH(data, index + 1, end);
+	    int[]ary = part(data, start, end);
+	    int index = ary[0];
+	    int endIndex = ary[1];
+	    quicksortH(data, start, index);
+	    quicksortH(data, endIndex + 1, end);
 	}
-	return data;
     }
 
-    public static String quickSort(int[] data){
-	int[] temp = quickSortH(data, 0, data.length);
-	String res = "";
-	for(int x = 0; x < temp.length; x++){
-	    res += temp[x];
-	}
-	return res;
+    public static void quicksort(int[] data){
+	quicksortH(data, 0, data.length);
     }
-	
 	    
 	public static void main(String[] args){
 	    int[] a = {0, 4, 1, 2, 5, 3, 2};
+	    int[]ary = part(a, 0, a.length);	    
 	    int[] b = {0, 4, 1, 2, 5, 3, 2};
-	    int[] c = {0, 2, 1, 2, 3};
-	System.out.println(part(a, 0, a.length));
+	    int[] c = new int[1000000];
+	    for(int x = 0; x < c.length; x++){
+		c[x] = 1;
+	    }
+	System.out.println(ary[0]);
 		String s = "";
 	String t = "";
 	for(int x = 0; x < a.length; x++){
 	s += a[x];
 	}
 	System.out.println(s);
-	/*	System.out.println(quickselect(b, 2));
+	System.out.println(quickselect(b, 2));
 	for(int x = 0; x < b.length; x++){
 	t += b[x];
 	}
 	System.out.println(t);
-	System.out.println(quickSort(c));
-	*/	}
+	quicksort(c);
+	}
 
-}
+    }
 
 
 	
