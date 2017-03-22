@@ -71,32 +71,9 @@ public class Quick{
 
     public static void quicksort(int[] data){
 	quicksortH(data, 0, data.length);
-    }
-	    
-	public static void main(String[] args){
-	    int[] a = {0, 4, 1, 2, 5, 3, 2};
-	    int[]ary = part(a, 0, a.length);	    
-	    int[] b = {0, 4, 1, 2, 5, 3, 2};
-	    int[] c = new int[1000000];
-	    for(int x = 0; x < c.length; x++){
-		c[x] = 1;
-	    }
-	System.out.println(ary[0]);
-		String s = "";
-	String t = "";
-	for(int x = 0; x < a.length; x++){
-	s += a[x];
-	}
-	System.out.println(s);
-	System.out.println(quickselect(b, 2));
-	for(int x = 0; x < b.length; x++){
-	t += b[x];
-	}
-	System.out.println(t);
-	quicksort(c);
-	}
+    }	 
 
-    }
+}
 
 
 	
