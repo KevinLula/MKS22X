@@ -1,40 +1,57 @@
+import java.util.*;
+import java.io.*;
 public class Merge{
 
-    public static void merge(int[]a, int[]b, int[]destination){
-	mergeH(a, b, destination, 0, 0, 0);
+    public static void mergesort(int[]ary){
+	if (ary.length <= 1){
+	    return;
+	}
+	else{
+	    int[] left = new int[ary.length / 2];
+	    int[] right = new int[ary.length - a.length];
+	    int lIndex = 0;
+	    for (int lIndex = 0; lIndex < ary.length; lIndex++){
+		if (lIndex < left.length){
+		    left[lIndex] = ary[lIndex];
+		}
+		else{
+		    right[rIndex] = ary[rIndex];
+		    rIndex += 1;
+		}
+	    }
+	    mergesort(left);
+	    mergesort(right);
+	    merge(left, right, ary);
+	}
+
+	    
     }
 
-    private static void mergeH(int[]a, int[]b, int[]destination, int x, int y, int z){
-	if(x < a.length || y < b.length){
-	    if(y > b.length - 1){
-		destination[z] = b[x];
-		mergeH(a, b, destination, x++, y, z++);
-	    }
-	    if(x > a.length - 1){
+    private static void merge(int[]a, int[]b, int[] destination){
+	int x = 0;
+	int y = 0;
+	int z = 0;	
+	while (x <= a.length && y <= b.length){
+	    if (x == a.length){
 		destination[z] = b[y];
-		mergeH(a, b, destination, x, y++, z++);
-	    }		
-	    if(a[x] > b[y]){
-	    destination[z] = b[y];
-	    mergeH(a, b, destination, x, y++, z++);
+		y++;
+		z++;
 	    }
-	    if(a[x] <= b[y]){
-	    destination[z] = a[x];
-	    mergeH(a, b, destination, x++, y, z++);
+	    else if (y == b.length){
+		destination[z] = a[x];
+		x++;
+		z++;
+	    }
+	    else if (a[x] <= b[y]){
+		destination[z] = a[x];
+		x++;
+		z++;
+	    }
+	    else if(b[y] < a[x]){
+		destination[z] = b[y];
+		y++;
+		z++;
 	    }
 	}
-    }
-
-    public static void main(String[] args){
-	int[] a = {1, 3, 6, 9, 13};
-	int[] b = {2, 5, 7, 10};
-	int[] c = new int[9];
-	merge(a, b, c);
-	String s = "";
-	for(int x = 0; x < c.length; x++){
-	    s += c[x];
-	}
-	System.out.println(s);
-    }
-	
+    }		
 }
