@@ -8,8 +8,8 @@ public class Merge{
 	}
 	else{
 	    int[] left = new int[ary.length / 2];
-	    int[] right = new int[ary.length - a.length];
-	    int lIndex = 0;
+	    int[] right = new int[ary.length - left.length];
+	    int rIndex = 0;
 	    for (int lIndex = 0; lIndex < ary.length; lIndex++){
 		if (lIndex < left.length){
 		    left[lIndex] = ary[lIndex];
@@ -31,7 +31,7 @@ public class Merge{
 	int x = 0;
 	int y = 0;
 	int z = 0;	
-	while (x <= a.length && y <= b.length){
+	while (x <= a.length && y <= b.length && z < destination.length){
 	    if (x == a.length){
 		destination[z] = b[y];
 		y++;
