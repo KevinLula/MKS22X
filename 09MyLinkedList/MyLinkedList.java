@@ -27,8 +27,15 @@ public class MyLinkedList{
 	return size;
     }
 
- //   public String toString(){
-   // }
+    public String toString(){
+	LNode a = head;
+	String res = "";
+	for(int x = 0; x < size; x++){
+	res += a.value + " ";
+	a = a.next;
+	} 
+	return res;
+    }
 
     public int get(int index){
 	LNode a = head;
@@ -83,3 +90,5 @@ public class MyLinkedList{
     }
 
 }
+
+
