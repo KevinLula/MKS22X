@@ -28,11 +28,13 @@ public class MyLinkedList{
     }
 
     public String toString(){
+	int x = 0;
 	LNode a = head;
 	String res = "";
-	for(int x = 0; x < size; x++){
-	res += a.value + " ";
+	while(x < size){
+	res += a.value;
 	a = a.next;
+	x++;
 	} 
 	return res;
     }
@@ -58,14 +60,47 @@ public class MyLinkedList{
 	return old;
     }
 
-/*    public int indexOf(int value){
+    public int indexOf(int val){
+	LNode a = head;
+	int index = -1;
+	int lookingFor = a.value;
+	for(int x = 0; x < size; x++){
+	if(lookingFor == val){
+	index = x;
+	break;
+	// Or make x = size after index = x if dont want to use break
+	}
+	}
+	return index;
     }
 
     public void add(int index, int value){
+	LNode a = new LNode(value);
+	LNode b = head;
+	int in = 0;
+	while(in < index){
+	b = b.next;
+	in++;
+	}
+	a.next = b.next;
+	b.next.prev = a;
+	b.next = a;
+	a.prev = b;
     }
 
     public int remove(int index){
-    }*/
+	LNode a = head;
+	int in = 0;
+	int res = 0;
+	while(in < index){
+	a = a.next;
+	in++;
+	}
+	res = a.value;
+	a.prev.next = a.next;
+	a.next.prev = a.prev;
+	return res;
+    }
 
     
     private class LNode{
@@ -89,6 +124,13 @@ public class MyLinkedList{
 	}
     }
 
+	public static void main(String [] args){
+	MyLinkedList a = new MyLinkedList();
+	a.add(0);
+	a.add(1);
+	a.add(2);
+	System.out.println(a.toString());
+	}
 }
 
 
