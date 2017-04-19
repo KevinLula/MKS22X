@@ -102,6 +102,16 @@ public class MyLinkedList{
 	return res;
     }
 
+	private void remove(LNode Target){
+	}
+
+	private LNode getNthNode(int n){
+	}
+
+	private void addAfter(LNode location, LNode toBeAdded){
+	}
+
+
     
     private class LNode{
 	public LNode next, prev;
