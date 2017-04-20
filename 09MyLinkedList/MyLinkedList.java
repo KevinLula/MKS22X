@@ -1,4 +1,42 @@
-public class MyLinkedList{
+import java.util.*;
+import java.io.*;
+public class MyLinkedList implements Iterable<Integer>{
+
+    public Iterator<Integer> iterator(){
+	return new MyLinkedListIterator(this);
+    }
+
+    public class MyLinkedListIterator implements Iterator<Integer>{
+	MyLinkedList L;
+	LNode a;
+
+	public MyLinkedListIterator(MyLinkedList x){
+	    L = x;
+	    a = x.head;
+	}
+
+	public boolean hasNext(){
+	    return !(a == null);
+	}
+
+	public Integer next(){
+	    if(hasNext()){
+		int x = a.value;
+		a = a.next;
+		return x;
+	    }
+	    else{
+		throw new NoSuchElementException();
+	    }
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
+
+
+    
     public LNode head, tail;
     private int size;
 
@@ -9,17 +47,7 @@ public class MyLinkedList{
     }
 
     public boolean add(int value){
-	if(size == 0){
-	head = new LNode(value);
-	tail = head;
-	}
-	else{
-	LNode a = new LNode(value);
-	head.next = a;
-	a.prev = head;
-	tail = a;
-	}
-	size++;
+	add(size, value);
 	return true;
     }
 
@@ -28,36 +56,37 @@ public class MyLinkedList{
     }
 
     public String toString(){
-	int x = 0;
 	LNode a = head;
-	String res = "";
-	while(x < size){
+	String res = "[";
+	while(a != null){
 	res += a.value;
+	if(a.next != null){
+	    res += ",";
+	}
 	a = a.next;
-	x++;
 	} 
-	return res;
+	return res + "]";
     }
 
     public int get(int index){
-	LNode a = head;
-	int res = a.value;
-	for(int x = 0; x < index; x++){
-	a = a.next;
+	if(index < size && index >= 0){
+	    return getNthNode(index).value;
 	}
-	return res;
+	else{
+	    throw new IndexOutOfBoundsException();
+	}
     }
 
     public int set(int index, int value){
-	LNode a = head;
-	int res = value;
-	int old = 0;
-	for(int x = 0; x < index; x++){
-	a = a.next;
+	if(index < size && index >= 0){
+	    LNode a = getNthNode(index);
+	    int old = a.value;
+	    a.value = value;
+	    return old;
 	}
-	old = a.value;
-	a.value = res;
-	return old;
+	else{
+	    throw new IndexOutOfBoundsException();
+	}
     }
 
     public int indexOf(int val){
@@ -66,49 +95,112 @@ public class MyLinkedList{
 	int lookingFor = a.value;
 	for(int x = 0; x < size; x++){
 	if(lookingFor == val){
-	index = x;
-	break;
-	// Or make x = size after index = x if dont want to use break
+	    return x;
 	}
 	}
 	return index;
     }
 
     public void add(int index, int value){
-	LNode a = new LNode(value);
-	LNode b = head;
-	int in = 0;
-	while(in < index){
-	b = b.next;
-	in++;
+	if(index <= size && index >= 0){
+	    if(size == 0){
+		head = new LNode(value);
+		tail = head;
+	    }
+	    else if(index == 0){
+		LNode a = new LNode(value, null, head);
+		head.prev = a;
+		head = head.prev;
+	    }
+	    else if(index ==size){
+		LNode a = new LNode(value, tail, null);
+		tail.next = a;
+		tail = tail.next;
+	    }
+	    else{
+		LNode previous = getNthNode(index - 1);
+		LNode nex = previous.next;
+		previous.next = new LNode(value, previous, nex);
+		nex.prev = previous.next;
+	    }
+	    size += 1;
 	}
-	a.next = b.next;
-	b.next.prev = a;
-	b.next = a;
-	a.prev = b;
+	else{
+	    throw new IndexOutOfBoundsException();
+	}
     }
 
     public int remove(int index){
-	LNode a = head;
-	int in = 0;
-	int res = 0;
-	while(in < index){
-	a = a.next;
-	in++;
+	if(index < size && index >= 0){
+	    LNode a = getNthNode(index);
+	    LNode previous = a.prev;
+	    LNode nex = a.next;
+	    if(index > 0){
+		previous.next = nex;
+	    }
+	    else{
+		head = nex;
+	    }
+	    if(index < size - 1){
+		nex.prev = previous;
+	    }
+	    else{
+		tail = previous;
+	    }
+	    size -= 1;
+	    return a.value;
 	}
-	res = a.value;
-	a.prev.next = a.next;
-	a.next.prev = a.prev;
-	return res;
+	else{
+	    throw new IndexOutOfBoundsException();
+	}
     }
 
 	private void remove(LNode Target){
+	    LNode a = Target;
+	    LNode previous = Target.prev;
+	    LNode nex = Target.next;
+
+	    previous.next = nex;
+	    nex.prev = previous;
+	    size -= 1;
 	}
 
 	private LNode getNthNode(int n){
+	    if(n < size && n >= 0){
+	    LNode a = head;
+	    LNode b = null;
+	    int x = 0;
+	    while(x < size()){
+		if(x == n){
+		    b = a;
+		    x = size() + 1;
+		}
+		else{
+		    a = a.next;
+		}
+		x++;
+	    }
+	    return b;
 	}
+	    else{
+		throw new IndexOutOfBoundsException();
+	    }
+	}
+	
 
 	private void addAfter(LNode location, LNode toBeAdded){
+	    if(location.next != null){
+		toBeAdded.next = location.next;
+		toBeAdded.prev = location;
+		location.next = toBeAdded.next;
+	    }
+	    else{
+		toBeAdded.next = null;
+		toBeAdded.prev = location;
+		location.next = toBeAdded;
+		tail = toBeAdded;
+	    }
+	    size += 1;
 	}
 
 
@@ -128,19 +220,17 @@ public class MyLinkedList{
 	    prev = null;
 	    value = v;
 	}
+
+	public LNode(int v, LNode p, LNode n){
+	    value = v;
+	    next = n;
+	    prev = p;
+	}
 	
 	public String toString(){
 	return value+"";
 	}
     }
-
-	public static void main(String [] args){
-	MyLinkedList a = new MyLinkedList();
-	a.add(0);
-	a.add(1);
-	a.add(2);
-	System.out.println(a.toString());
-	}
 }
 
 
