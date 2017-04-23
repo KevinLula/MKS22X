@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque{
     
     private String[] Deck;
@@ -63,7 +64,7 @@ public class MyDeque{
     public String removeFirst(){
 	String element = "";
 	if(size == 0){
-	    throw new NoSuchElementExcpetion ("No elements found");
+	    throw new NoSuchElementException("No elements found");
 	}
 	if(front == Deck.length - 1){
 	    element = getFirst();
@@ -82,7 +83,7 @@ public class MyDeque{
     public String removeLast(){
 	String element = "";
 	if(size == 0){
-	    throw new NoSuchElementExcpetion ("No elements found");
+	    throw new NoSuchElementException("No elements found");
 	}
 	if(back == 0){
 	    element = getLast();
@@ -101,7 +102,7 @@ public class MyDeque{
     public String getFirst(){
 	String res = "";
 	if(size == 0){
-	    throw new NoSuchElementExcpetion ("No elements found");
+	    throw new NoSuchElementException("No elements found");
 	}
 	res = Deck[front];
 	return res;
@@ -110,10 +111,18 @@ public class MyDeque{
     public String getLast(){
 	String res = "";
 	if(size == 0){
-	    throw new NoSuchElementExcpetion ("No elements found");
+	    throw new NoSuchElementException("No elements found");
 	}
 	res = Deck[back];
 	return res;
     }
 
+    public String toString(){
+	String res = "[ ";
+	for(int x = 0; x < size; x++){
+	    res += Deck[x] + "";
+	}
+	res += "]";
+	return res;
+    }
 }
