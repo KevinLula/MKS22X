@@ -23,50 +23,38 @@ public class MyDeque{
 	back = size - 1;
     }
 
-    public void addFirst(String str){
-	if(str == null){
+   public void addFirst(String str){
+	if (str == null){
 	    throw new NullPointerException("Cannot add null elements");
 	}
-	if(size == Deck.length){
+	if (size == Deck.length){
 	    resize();
 	}
-	if(size == 0){
-	    Deck[front] = str;
-	    size += 1;
+	if (size != 0){
+	    if(front == 0){
+		front = Deck.length - 1;
+	    }
+	    else{
+		front -=1;
+	    }
 	}
-	if(front == 0){
-	    front = Deck.length - 1;
-	    Deck[front] = str;
-	    size += 1;
-	}
-	else{
-	    front -= 1;
-	    Deck[front] = str;
-	    size+= 1;
-	}
+	Deck[front] = str;
+	size += 1;
+	
     }
-       
+
     public void addLast(String str){
-	if(str == null){
+	if (str == null){
 	    throw new NullPointerException("Cannot add null elements");
 	}
-	if(size == Deck.length){
+	if (size == Deck.length){
 	    resize();
 	}
-	if(size == 0){
-	    Deck[back] = str;
-	    size += 1;
-	}	
-	if(back == Deck.length - 1){
-	    back = 0;
-	    Deck[back] = str;
-	    size += 1;
+	if (size!= 0){
+	    back = (back+1) % (Deck.length);
 	}
-	else{
-	    back += 1;
-	    Deck[back] = str;
-	    size+= 1;
-	}
+        Deck[back] = str;
+	size +=1;
     }
 
     public String removeFirst(){
@@ -129,25 +117,22 @@ public class MyDeque{
 	String res = "[";
 	for(int x = 0; x < Deck.length; x++){
 	    if(x + 1 == Deck.length){
-		res += Deck[x] + "]";
+		if(Deck[x] == null){		    
+		res +=  "null]";
 		break;
+		}
+		else{
+		    res += Deck[x] + "]";
+		    break;
+		}
 	    }
-	    res += Deck[x] + " ";
+	    if(Deck[x] == null){
+		res += "null, ";
+	    }
+	    else{
+	    res += Deck[x] + ", ";
+	    }
 	}
 	return res;
-    }
-
-    public static void main(String[] args){
-	MyDeque x = new MyDeque();
-	x.addLast("3");
-	x.addLast("4");
-	//x.addFirst("1");
-	//x.addFirst("2");
-	System.out.println(x);
-	System.out.println(x.getFirst());
-	System.out.println(x.getLast());
-	/* x.removeFirst();
-        x.removeLast();
-	System.out.println(x); */
     }
 }
