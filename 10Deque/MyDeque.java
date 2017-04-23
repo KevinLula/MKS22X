@@ -30,32 +30,40 @@ public class MyDeque{
 	if(size == Deck.length){
 	    resize();
 	}
-	if(size != 0){
-	    if(front == 0){
-		front = Deck.length - 1;
-	    }
-	    else{
-		front -=1;
-	    }
+	if(size == 0){
+	    Deck[front] = str;
+	    size += 1;
+	}
+	if(front == 0){
+	    front = Deck.length - 1;
+	    Deck[front] = str;
+	    size += 1;
+	}
+	else{
+	    front -= 1;
 	    Deck[front] = str;
 	    size+= 1;
 	}
     }
        
     public void addLast(String str){
-		if(str == null){
+	if(str == null){
 	    throw new NullPointerException("Cannot add null elements");
 	}
 	if(size == Deck.length){
 	    resize();
 	}
-	if(size != 0){
-	    if(back == Deck.length - 1){
-		back = 0;
-	    }
-	    else{
-		back +=1;
-	    }
+	if(size == 0){
+	    Deck[back] = str;
+	    size += 1;
+	}	
+	if(back == Deck.length - 1){
+	    back = 0;
+	    Deck[back] = str;
+	    size += 1;
+	}
+	else{
+	    back += 1;
 	    Deck[back] = str;
 	    size+= 1;
 	}
@@ -118,11 +126,28 @@ public class MyDeque{
     }
 
     public String toString(){
-	String res = "[ ";
-	for(int x = 0; x < size; x++){
-	    res += Deck[x] + "";
+	String res = "[";
+	for(int x = 0; x < Deck.length; x++){
+	    if(x + 1 == Deck.length){
+		res += Deck[x] + "]";
+		break;
+	    }
+	    res += Deck[x] + " ";
 	}
-	res += "]";
 	return res;
+    }
+
+    public static void main(String[] args){
+	MyDeque x = new MyDeque();
+	x.addLast("3");
+	x.addLast("4");
+	//x.addFirst("1");
+	//x.addFirst("2");
+	System.out.println(x);
+	System.out.println(x.getFirst());
+	System.out.println(x.getLast());
+	/* x.removeFirst();
+        x.removeLast();
+	System.out.println(x); */
     }
 }
