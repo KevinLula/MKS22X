@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class MyHeap{
 
     private int constant;
@@ -34,7 +35,7 @@ public class MyHeap{
     }
 
     private void pushUp(){
-	pushUpHelp(array.size() - 1)
+	pushUpHelp(array.size() - 1);
     }
 
 private void pushUpHelp(int x){
@@ -53,7 +54,7 @@ private void pushUpHelp(int x){
     }
 
 	private void pushDownHelp(int x){
-	if(x < arrayize() - 1){
+	if(x < array.size() - 1){
 	String parent = array.get(x);
 	String childLeft = array.get(2 * x);
 	String childRight = array.get(2 * x + 1);
@@ -70,6 +71,8 @@ private void pushUpHelp(int x){
 	array.set(x) = childRight;
 	pushDownHelp(2 * x + 1);
 	}
+}
+}
 }
 }
 
