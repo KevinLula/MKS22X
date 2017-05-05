@@ -72,7 +72,7 @@ public class MyHeap{
 		    parent = 2;
 	    }
 		else{
-		    if(heaparay[ind].compareTo(heaparray[childb]) * direction < 0){
+		    if(array[parent].compareTo(array[childRight]) * direction < 0){
 	                String temp = array[childRight];
 	                array[childRight] = array[parent];
 	                array[parent] = temp;
