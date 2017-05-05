@@ -6,22 +6,33 @@ public class MyHeap{
     private String[] array;
 
     public MyHeap(){	
-	array = new String[10]
+	array = new String[10];
 	size = 0;
     }
 
     public MyHeap(boolean x){
 	if(x){
+            array = new String[10];
+            array[0] = null;
 	    direction = 1;
 	}
 	else{
+           array = new String[10];
+           array[0] = null;
 	    direction = -1;
 	}
     }
 
     public void add(String s){
-	array[size+=1] = str
+	if(array.length - 1 == size){
+	String[] temp = new String[array.length * 2];
+	for(int x = 0; x < array.length; x++){
+	temp[x] = array[x];
+	}
+	array = temp;
+	}
 	size += 1;
+	array[size] = s;
 	pushUp();
     }
 
@@ -29,7 +40,7 @@ public class MyHeap{
        if(size < 1){
 	    throw new IllegalArgumentException();
 	}
-	String removed = heaparray[1];
+	String removed = array[1];
 	array[1] = array[size];
 	size -= 1;
 	pushDown();
@@ -46,12 +57,12 @@ public class MyHeap{
     private void pushUp(){
 	int x = size;
 	int parent = x / 2;
-	while (x > 1 && (direction * array[x].compareTo(array[parent]) > 0){
+	while (x > 1 && (direction * array[x].compareTo(array[parent])) > 0){
 		String temp = array[parent];
 		array[parent] = array[x];
 		array[x] = temp;
 		x = parent;
-		parent /= 2;
+		parent = parent / 2;
 	    }
 		
 	       }
@@ -68,7 +79,7 @@ public class MyHeap{
 	    else if (array[parent].compareTo(array[childLeft]) * direction < 0){
                     String temp = array[childLeft];
 	            array[childLeft] = array[parent];
-	            heaparray[parent] = temp;
+	            array[parent] = temp;
 		    parent = 2;
 	    }
 		else{
@@ -93,11 +104,21 @@ public class MyHeap{
     }
 	
     public static void main(String[] args){
-	MyHeap x = new MyHeap();
+	MyHeap x = new MyHeap(true);
 	x.add("a");
 	x.add("b");
 	x.add("c");
+	x.add("d");
+	x.add("e");
+	x.add("f");
+	x.add("g");
+	String a = x.remove();
+	String b = x.remove();
+	String c = x.peek();
 	System.out.println(x);
+	System.out.println(a);
+	System.out.println(b);
+	System.out.println(c);
     }
 }
 
