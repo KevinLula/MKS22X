@@ -44,17 +44,49 @@ public class MyHeap{
     }
 
     private void pushUp(){
-	pushUpHelp(array.size() - 1);
-    }
+	int x = size;
+	int parent = x / 2;
+	while (x > 1 && (direction * array[x].compareTo(array[parent]) > 0){
+		String temp = array[parent];
+		array[parent] = array[x];
+		array[x] = temp;
+		x = parent;
+		parent /= 2;
+	    }
+		
+	       }
 
     private void pushDown(){
-	pushDownHelp(1);
+	int parent = 1;
+	int childLeft = 2*parent;
+	int childRight = 2*parent+1;
+	String str = "";
+	while (parent < size){
+	    if (childLeft > size){
+		break;
+	    }
+	    else if (array[parent].compareTo(array[childLeft]) * direction < 0){
+                    String temp = array[childLeft];
+	            array[childLeft] = array[parent];
+	            heaparray[parent] = temp;
+		    parent = 2;
+	    }
+		else{
+		    if(heaparay[ind].compareTo(heaparray[childb]) * direction < 0){
+	                String temp = array[childRight];
+	                array[childRight] = array[parent];
+	                array[parent] = temp;
+			parent = 2*parent+1;
+		    }
+		}
+		    
+	}
     }
 
     public String toString(){
 	String res = "[";
 	for(int i = 1; i <= size; i++){
-	    res += array.get(i) + " ";
+	    res += array[i] + " ";
 	}
 	res += "]";
 	return res;
