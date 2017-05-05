@@ -5,21 +5,20 @@ public class MyHeap{
     private int size;
     private ArrayList<String> array;
 
-    public MyHeap(){
-	
+    public MyHeap(){	
 	direction = 1;
-	array.add("");
+	array.add(null);
 	size = 0;
     }
 
     public MyHeap(boolean x){
 	if(x){
-	    array.add("");
+	    array.add(null);
 	    direction = 1;
 	    size = 0;
 	}
 	else{
-	    array.add("null");
+	    array.add(null);
 	    direction = -1;
 	    size = 0;
 	}
