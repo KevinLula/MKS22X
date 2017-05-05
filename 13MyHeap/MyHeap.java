@@ -1,86 +1,55 @@
-import java.util.ArrayList;
+import java.util.*;
 public class MyHeap{
 
     private int direction;
     private int size;
-    private ArrayList<String> array;
+    private String[] array;
 
     public MyHeap(){	
-	direction = 1;
-	array.add(null);
+	array = new String[10]
 	size = 0;
     }
 
     public MyHeap(boolean x){
 	if(x){
-	    array.add(null);
 	    direction = 1;
-	    size = 0;
 	}
 	else{
-	    array.add(null);
 	    direction = -1;
-	    size = 0;
 	}
     }
 
     public void add(String s){
+	array[size+=1] = str
 	size += 1;
-	array.add(s);
 	pushUp();
     }
 
     public String remove(){
-        String res = array.get(1);
-	array.set(1, array.get(size));
+       if(size < 1){
+	    throw new IllegalArgumentException();
+	}
+	String removed = heaparray[1];
+	array[1] = array[size];
+	size -= 1;
 	pushDown();
-	return res;
+	return removed;
     }
 
     public String peek(){
-	return array.get(1);
+        if(size < 1){
+	    throw new IllegalArgumentException();
+	}
+	return array[1];
     }
 
     private void pushUp(){
 	pushUpHelp(array.size() - 1);
     }
 
-private void pushUpHelp(int x){
-	String str = array.get(x);
-	if(x > 1){
-	if(str.compareTo(array.get(x/2)) >= 1){
-	    array.set(x,array.get(x/2));
-	    array.set(x/2, str);
-	pushUpHelp(x/2);
-	}
-}
-}
-
     private void pushDown(){
 	pushDownHelp(1);
     }
-
-	private void pushDownHelp(int x){
-	if(x < array.size() - 1){
-	String parent = array.get(x);
-	String childLeft = array.get(2 * x);
-	String childRight = array.get(2 * x + 1);
-	if(childLeft.compareTo(childRight) >= 1){
-	if(parent.compareTo(childLeft) >= 1){
-	    array.set(2 * x,parent);
-	    array.set(x, childLeft);
-	pushDownHelp(2 * x);
-	}
-}
-	else{
-	if(parent.compareTo(childRight) >= 1){
-	    array.set(2 * x + 1, parent);
-	    array.set(x, childRight);
-	pushDownHelp(2 * x + 1);
-	}
-}
-}
-}
 
     public String toString(){
 	String res = "[";
