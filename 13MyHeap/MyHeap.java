@@ -24,15 +24,15 @@ public class MyHeap{
     }
 
     public void add(String s){
-	if(array.length == size){
+	if(array.length - 1 == size){
 	String[] temp = new String[array.length * 2];
 	for(int x = 0; x < array.length; x++){
 	temp[x] = array[x];
 	}
 	array = temp;
 	}
-	array[size + 1] = s;
 	size++;
+	array[size] = s;
 	pushUp();
     }
 
@@ -127,6 +127,18 @@ public class MyHeap{
 	a.add("g");
 	System.out.println(a);
 	a.add("f");
+	System.out.println(a);
+	a.add("h");
+	System.out.println(a);
+	a.add("h");
+	System.out.println(a);
+	a.add("h");
+	System.out.println(a);
+	a.add("h");
+	System.out.println(a);
+	a.add("h");
+	System.out.println(a);
+	a.add("h");
 	System.out.println(a);
 	a.remove();
 	System.out.println(a);
