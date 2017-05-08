@@ -74,7 +74,7 @@ public class MyHeap{
 	int right = parent * 2 + 1;
 	int chosen = 0;
 	if(right < size){
-	    if(array[left].compareTo(array[right]) > 0){
+	    if(direction * array[left].compareTo(array[right]) > 0){
 	    chosen = left;
 	}
 	else{chosen = right;}
@@ -83,7 +83,15 @@ public class MyHeap{
 	    String temp = array[parent];
 	    array[parent] = array[chosen];
 	    array[chosen] = temp;
-	    parent = right;
+	    parent = chosen;
+	    left = chosen * 2;
+	    right = chosen * 2 + 1;
+	if(right < size){
+	    if(direction * array[left].compareTo(array[right]) > 0){
+	    chosen = left;
+	}
+	else{chosen = right;}
+	}
 	}
     }
 
@@ -93,7 +101,12 @@ public class MyHeap{
     public String toString(){
 	String res = "[";
 	for(int i = 1; i <= size; i++){
+	    if(i == size){
+		res += array[i];
+	    }
+	    else{
 	    res += array[i] + " ";
+	    }
 	}
 	res += "]";
 	return res;
@@ -116,6 +129,7 @@ public class MyHeap{
 	a.add("f");
 	System.out.println(a);
 	a.remove();
+	System.out.println(a);
 	a.remove();
 	System.out.println(a);
     }
