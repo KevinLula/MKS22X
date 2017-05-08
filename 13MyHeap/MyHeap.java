@@ -24,15 +24,15 @@ public class MyHeap{
     }
 
     public void add(String s){
-	if(array.length - 1 == size){
+	if(array.length == size){
 	String[] temp = new String[array.length * 2];
 	for(int x = 0; x < array.length; x++){
 	temp[x] = array[x];
 	}
 	array = temp;
 	}
-	size += 1;
-	array[size] = s;
+	array[size + 1] = s;
+	size++;
 	pushUp();
     }
 
@@ -51,7 +51,8 @@ public class MyHeap{
         if(size < 1){
 	    throw new IllegalArgumentException();
 	}
-	return array[1];
+	String res = array[1];
+	return res;
     }
 
     private void pushUp(){
@@ -69,30 +70,25 @@ public class MyHeap{
 
     private void pushDown(){
 	int parent = 1;
-	int childLeft = 2*parent;
-	int childRight = 2*parent+1;
-	String str = "";
-	while (parent < size){
-	    if (childLeft > size){
-		break;
-	    }
-	    else if (array[parent].compareTo(array[childLeft]) * direction < 0){
-                    String temp = array[childLeft];
-	            array[childLeft] = array[parent];
-	            array[parent] = temp;
-		    parent = 2;
-	    }
-		else{
-		    if(array[parent].compareTo(array[childRight]) * direction < 0){
-	                String temp = array[childRight];
-	                array[childRight] = array[parent];
-	                array[parent] = temp;
-			parent = 2*parent+1;
-		    }
-		}
-		    
+	int left = parent * 2;
+	int right = parent * 2 + 1;
+	int chosen = 0;
+	if(right < size){
+	    if(array[left].compareTo(array[right]) > 0){
+	    chosen = left;
+	}
+	else{chosen = right;}
+	}
+	while(parent < size && right < size && direction * (array[parent].compareTo(array[chosen])) < 0){
+	    String temp = array[parent];
+	    array[parent] = array[chosen];
+	    array[chosen] = temp;
+	    parent = right;
 	}
     }
+
+
+
 
     public String toString(){
 	String res = "[";
@@ -104,21 +100,24 @@ public class MyHeap{
     }
 	
     public static void main(String[] args){
-	MyHeap x = new MyHeap(true);
-	x.add("a");
-	x.add("b");
-	x.add("c");
-	x.add("d");
-	x.add("e");
-	x.add("f");
-	x.add("g");
-	String a = x.remove();
-	String b = x.remove();
-	String c = x.peek();
-	System.out.println(x);
+	MyHeap a = new MyHeap(true);
+	a.add("a");
 	System.out.println(a);
-	System.out.println(b);
-	System.out.println(c);
+	a.add("b");
+	System.out.println(a);
+	a.add("c");
+	System.out.println(a);
+	a.add("d");
+	System.out.println(a);
+	a.add("e");
+	System.out.println(a);
+	a.add("g");
+	System.out.println(a);
+	a.add("f");
+	System.out.println(a);
+	a.remove();
+	a.remove();
+	System.out.println(a);
     }
 }
 
