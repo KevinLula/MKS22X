@@ -21,7 +21,7 @@ public class MyHeap{
 	}
     }
 
-    public int size(){
+    public int getSize(){
 	return size;
     }
 
@@ -115,7 +115,7 @@ public class MyHeap{
     }
 	
     public static void main(String[] args){
-	MyHeap a = new MyHeap(true);
+	MyHeap a = new MyHeap(false);
 	a.add(1);
 	System.out.println(a);
        	a.add(2);
@@ -143,7 +143,7 @@ public class MyHeap{
 	a.remove();
 	System.out.println(a);
 	System.out.println(a.peek());
-	System.out.println(a.size());
+	System.out.println(a.getSize());
     }
 }
 
