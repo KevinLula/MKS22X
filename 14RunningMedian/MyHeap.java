@@ -3,29 +3,38 @@ public class MyHeap{
 
     private int direction;
     private int size;
-    private ArrayList<Integer> array;
+    private int[] array;
 
     public MyHeap(){	
-	array = new ArrayList<Integer>;
+	array = new int[10];
 	size = 0;
     }
 
     public MyHeap(boolean x){
 	if(x){
-	    array = new ArrayList<Integer>;
-            array.set(0,null);
+            array = new int[10];
 	    direction = 1;
 	}
 	else{
-	    array = new ArrayList<Integer>;
-            array.set(0,null);
+           array = new int[10];
 	    direction = -1;
 	}
     }
 
+    public int size(){
+	return size;
+    }
+
     public void add(int s){
+	if(array.length - 1 == size){
+	int[] temp = new int[array.length * 2];
+	for(int x = 0; x < array.length; x++){
+	temp[x] = array[x];
+	}
+	array = temp;
+	}
+	array[size] = s;
 	size++;
-	array.set(size,s);
 	pushUp();
     }
 
@@ -33,8 +42,8 @@ public class MyHeap{
        if(size < 1){
 	    throw new IllegalArgumentException();
 	}
-	int removed = array.get(1);
-	array.set(1,array.get(size));
+	int removed = array[0];
+	array[0] = array[size - 1];
 	size -= 1;
 	pushDown();
 	return removed;
@@ -44,43 +53,43 @@ public class MyHeap{
         if(size < 1){
 	    throw new IllegalArgumentException();
 	}
-	int res = array.get(1);
+	int res = array[0];
 	return res;
     }
 
     private void pushUp(){
-	int x = size;
-	int parent = x / 2;
-	while (x > 1 && (direction * (array.get(x) - array.get(parent))) > 0){
-		int temp = array.get(parent);
-		array.set(parent,array.get(x));
-		array.set(x,temp);
+	int x = size - 1;
+	int parent = (x + 1)/2 - 1;
+	while (x > 0 && (direction * (array[x] - array[parent])) > 0){
+		int temp = array[parent];
+		array[parent] = array[x];
+		array[x] = temp;
 		x = parent;
-		parent = parent / 2;
+		parent = (parent + 1)/2 - 1;
 	    }
 		
 	       }
 
     private void pushDown(){
-	int parent = 1;
-	int left = parent * 2;
-	int right = parent * 2 + 1;
+	int parent = 0;
+	int left = (parent + 1) * 2 - 1;
+	int right = (parent + 1) * 2;
 	int chosen = 0;
 	if(right < size){
-	    if((direction * (array.get(left) - array.get(right))) > 0){
+	    if(direction * (array[left] - array[right]) > 0){
 	    chosen = left;
 	}
 	else{chosen = right;}
 	}
-	while(parent < size && right < size && (direction * (array[parent] - array[chosen])) < 0){
+	while(parent < size && right < size && direction * (array[parent] - array[chosen]) < 0){
 	    int temp = array[parent];
 	    array[parent] = array[chosen];
 	    array[chosen] = temp;
 	    parent = chosen;
-	    left = chosen * 2;
-	    right = chosen * 2 + 1;
+	    left = (chosen + 1) * 2 - 1;
+	    right = (chosen + 1) * 2;
 	if(right < size){
-	    if((direction * (array[left] - array[right])) > 0){
+	    if(direction * (array[left] - array[right]) > 0){
 	    chosen = left;
 	}
 	else{chosen = right;}
@@ -93,8 +102,8 @@ public class MyHeap{
 
     public String toString(){
 	String res = "[";
-	for(int i = 1; i <= size; i++){
-	    if(i == size){
+	for(int i = 0; i < size; i++){
+	    if(i == size - 1){
 		res += array[i];
 	    }
 	    else{
@@ -109,7 +118,7 @@ public class MyHeap{
 	MyHeap a = new MyHeap(true);
 	a.add(1);
 	System.out.println(a);
-	a.add(2);
+       	a.add(2);
 	System.out.println(a);
 	a.add(3);
 	System.out.println(a);
@@ -128,10 +137,13 @@ public class MyHeap{
 	a.add(10);
 	System.out.println(a);
 	a.add(11);
-	a.remove();
 	System.out.println(a);
 	a.remove();
 	System.out.println(a);
+	a.remove();
+	System.out.println(a);
+	System.out.println(a.peek());
+	System.out.println(a.size());
     }
 }
 
