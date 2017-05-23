@@ -60,7 +60,4 @@ public class Location implements Comparable<Location>{
 	}
     }
 
-    public static void main(String[] args){
-	System.out.println("Hi");
-    }
 }
