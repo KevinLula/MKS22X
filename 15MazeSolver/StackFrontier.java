@@ -3,6 +3,11 @@ public class StackFrontier implements Frontier{
     
     private Stack<Location> locations = null;
     private int size;
+
+    public StackFrontier(){
+	locations = new Stack<Location>();
+	size = 0;
+    }
     
     public void add(Location x){
 	locations.push(x);
@@ -18,7 +23,7 @@ public class StackFrontier implements Frontier{
 	return !locations.isEmpty();
     }
 
-    public int size(){
+    public int getSize(){
 	return size;
     }
     
