@@ -4,6 +4,7 @@ public class FrontierPriorityQueue implements Frontier{
 
     public FrontierPriorityQueue(){
 	locations = new PriorityQueue();
+	size = 0;
     }
    
     public void add(Location x){
@@ -16,7 +17,7 @@ public class FrontierPriorityQueue implements Frontier{
 	return locations.remove();
     }
 
-    public int size(){
+    public int getSize(){
 	return size;
     }
 }
