@@ -6,6 +6,7 @@ public class QueueFrontier implements Frontier{
     
     public QueueFrontier(){
 	locations = new LinkedList<Location>();
+	size = 0;
     }
     
     public void add(Location x){
@@ -22,7 +23,7 @@ public class QueueFrontier implements Frontier{
 	return !locations.isEmpty();
     }
 
-    public int size(){
+    public int getSize(){
 	return size;
     }
     
