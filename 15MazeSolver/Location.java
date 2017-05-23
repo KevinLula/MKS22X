@@ -25,11 +25,11 @@ public class Location implements Comparable<Location>{
 	this.aStar = aStar;
     }
 
-    public int row(){
+    public int getRow(){
 	return row;
     }
 
-    public int col(){
+    public int getCol(){
 	return col;
     }
 
@@ -45,8 +45,8 @@ public class Location implements Comparable<Location>{
 	return aStar;
     }
 
-    public Location prev(){
-	return prev();
+    public Location getPrev(){
+	return previous;
     }
     
     public int compareTo(Location other){
