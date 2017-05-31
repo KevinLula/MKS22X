@@ -30,18 +30,18 @@ public class MyDeque{
 	if (size == Deck.length){
 	    resize();
 	}
-	if (size != 0){
-	    if(front == 0){
+	if (size == 0){
+		Deck[front] = str;
+		size += 1;
+		back += 1;
 		front = Deck.length - 1;
-	    }
-	    else{
-		front -=1;
+	}
+	else{
+		Deck[front] = str;
+		size += 1;
+		front -= 1;
 	    }
 	}
-	Deck[front] = str;
-	size += 1;
-	
-    }
 
     public void addLast(String str){
 	if (str == null){
@@ -50,12 +50,18 @@ public class MyDeque{
 	if (size == Deck.length){
 	    resize();
 	}
-	if (size!= 0){
-	    back = (back+1) % (Deck.length);
+	if (size == 0){
+	    Deck[back] = str;
+	    size += 1;
+	    back += 1;
+            front = Deck.length - 1;
 	}
-        Deck[back] = str;
-	size +=1;
-    }
+        else{
+		Deck[back] = str;
+		size +=1;
+		back += 1;
+	}
+	}
 
     public String removeFirst(){
 	String element = "";
@@ -135,4 +141,16 @@ public class MyDeque{
 	}
 	return res;
     }
+	
+	public static void main(String[] args){
+	MyDeque a = new MyDeque();
+	a.addFirst("hello");
+	a.addFirst("yellow");
+	a.addLast("sadness");
+	a.addFirst("happy");
+	a.addLast("Wednesday");
+	System.out.println(a);
 }
+}
+
+
