@@ -15,7 +15,7 @@ public class Merge{
 		    left[lIndex] = ary[lIndex];
 		}
 		else{
-		    right[rIndex] = ary[rIndex];
+		    right[rIndex] = ary[lIndex];
 		    rIndex += 1;
 		}
 	    }
@@ -54,4 +54,14 @@ public class Merge{
 	    }
 	}
     }		
+
+    public static void main(String[] args){
+	int[] a = {1, 3, 6, 9, 13, 2, 5, 7, 10};
+ 	mergesort(a);
+ 	String s = "";
+ 	for(int x = 0; x < a.length; x++){
+ 	    s += a[x];
+ 	}
+ 	System.out.println(s);
+    }
 }
