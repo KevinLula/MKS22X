@@ -5,7 +5,7 @@ public class MyDeque{
     private int front, back, size;
 
     public MyDeque(){
-	Deck = new String[10];
+	Deck = new String[5];
 	front = 0;
 	back = 0;
 	size = 0;
@@ -15,12 +15,11 @@ public class MyDeque{
 	String[] res = new String[Deck.length * 2];
 	for(int x = 0; x < back + 1; x++){
 	    res[x] = Deck[x];}
-	for(int y = 0; y < size - back - 1; y++){
-	    res[res.length - 1 - y] = Deck[y + back + 1];
+	for(int y = 0; y < size - back; y++){
+	    res[res.length - 1 - y] = Deck[Deck.length - 1 - y];
 	}
+	front = front + Deck.length;
 	Deck = res;
-	front = 0;
-	back = size - 1;
     }
 
    public void addFirst(String str){
@@ -33,15 +32,19 @@ public class MyDeque{
 	if (size == 0){
 		Deck[front] = str;
 		size += 1;
-		back += 1;
-		front = Deck.length - 1;
 	}
-	else{
+        else{ if(front == 0){
+		front = Deck.length - 1;
 		Deck[front] = str;
 		size += 1;
+	    }
+	    else{
 		front -= 1;
+		Deck[front] = str;
+		size += 1;
 	    }
 	}
+   }
 
     public void addLast(String str){
 	if (str == null){
@@ -53,15 +56,13 @@ public class MyDeque{
 	if (size == 0){
 	    Deck[back] = str;
 	    size += 1;
-	    back += 1;
-            front = Deck.length - 1;
 	}
         else{
-		Deck[back] = str;
-		size +=1;
-		back += 1;
+	    back += 1;
+	    Deck[back] = str;
+       	    size +=1;
 	}
-	}
+    }
 
     public String removeFirst(){
 	String element = "";
@@ -119,6 +120,10 @@ public class MyDeque{
 	return res;
     }
 
+    public int getSize(){
+	return size;
+    }
+
     public String toString(){
 	String res = "[";
 	for(int x = 0; x < Deck.length; x++){
@@ -144,11 +149,15 @@ public class MyDeque{
 	
 	public static void main(String[] args){
 	MyDeque a = new MyDeque();
-	a.addFirst("hello");
-	a.addFirst("yellow");
-	a.addLast("sadness");
-	a.addFirst("happy");
-	a.addLast("Wednesday");
+	a.addFirst("1");
+	a.addFirst("2");
+	a.addFirst("3");
+	a.addFirst("4");
+	a.addFirst("5");
+       	a.addFirst("6");
+	System.out.println(a.getSize());
+	System.out.println(a.getFirst());
+	System.out.println(a.getLast());
 	System.out.println(a);
 }
 }
